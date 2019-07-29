@@ -21,13 +21,17 @@ module HasOneBlockchainThroughCurrency
   end
 
   def latest_block_number
-    blockchain.blockchain_api.latest_block_number
+    blockchain.blockchain_api.fetch_current_height
   end
 
-  def confirmations
-    return 0 if block_number.blank?
-    return blockchain.processed_height - block_number if (blockchain.processed_height - block_number) >= 0
-    'N/A'
+  def confirmations(height: blockchain.processed_height)
+    if block_number.blank?
+      0
+    elsif height - block_number >= 0
+      height - block_number
+    else
+      'N/A'
+    end
   rescue StandardError => e
     report_exception(e)
     'N/A'
