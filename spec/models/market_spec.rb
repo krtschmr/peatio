@@ -57,10 +57,10 @@ describe Market do
 
   context 'validations' do
     let(:valid_attributes) do
-      { base_unit:         :btc,
-        quote_unit:         :trst,
-        bid_fee:          0.1,
-        ask_fee:          0.2,
+      { base_unit:        :btc,
+        quote_unit:       :trst,
+        taker_fee:        0.1,
+        maker_fee:        0.2,
         min_amount:       0.0001,
         min_price:        0.0001,
         amount_precision: 4,
@@ -69,10 +69,10 @@ describe Market do
     end
 
     let(:mirror_attributes) do
-      { base_unit:         :usd,
-        quote_unit:         :btc,
-        bid_fee:          0.1,
-        ask_fee:          0.2,
+      { base_unit:        :usd,
+        quote_unit:       :btc,
+        maker_fee:        0.1,
+        taker_fee:        0.2,
         min_amount:       0.0001,
         min_price:        0.0001,
         amount_precision: 4,
